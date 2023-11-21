@@ -1,0 +1,70 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+body,html {
+    width: 150px;
+    background-color: var(--bgColor);
+    border: none;
+}
+ul {
+    list-style: none;
+    padding: 3px;
+}
+a {
+    text-decoration: none;
+    padding: 5px;
+    font-size: 14px;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    align-content: center;
+    align-items: center;
+    line-height: 100%;
+    gap: 5px;
+    color: var(--text-color);
+    border-radius: 5px;
+}
+a:hover {
+    background-color: var(--hoverBgColor);
+    color: var(--hlColor);
+}
+iconpark-icon {
+    font-size: 16px;
+}
+span {
+    color: var(--newColor);
+}
+.logo {
+    display: flex;
+    padding: 3px 8px;
+    background-color: var(--topColor);
+}
+.logo iconpark-icon {
+    color: var(--text-color);
+    font-size: 86px;
+    height: 30px;
+}
+
+/* 亮色模式 */
+@media (prefers-color-scheme: light) {
+    :root {
+        --bgColor: #ffffff;
+        --hoverBgColor: #dcdcdc;
+        --hlColor: #1c60f6;
+        --text-color: #333;
+        --newColor: #1c60f6;
+        --topColor: #dcdcdc;
+      }
+  }
+/* 暗色模式下的样式 */
+@media (prefers-color-scheme: dark) {
+    :root {
+        --bgColor: #1E1E1E;
+        --hoverBgColor: #363636;
+        --hlColor: #fff;
+        --text-color: #fff;
+        --newColor: #1c60f6;
+        --topColor: #363636;
+      }
+  }
