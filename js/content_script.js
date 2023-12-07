@@ -849,12 +849,109 @@
         });
     };
 
+    function translateFullDatesInH5Elements() {
+    
+        // 月份翻译映射表
+        const monthTranslations = {
+            'January': '一月',
+            'February': '二月',
+            'March': '三月',
+            'April': '四月',
+            'May': '五月',
+            'June': '六月',
+            'July': '七月',
+            'August': '八月',
+            'September': '九月',
+            'October': '十月',
+            'November': '十一月',
+            'December': '十二月'
+        };
+    
+        // 选择h5元素
+        const selector = 'h5';
+        const dateElements = document.querySelectorAll(selector);
+        console.log("找到的元素数量:", dateElements.length);
+    
+        // 循环遍历所选元素并翻译日期字符串
+        dateElements.forEach(el => {
+    
+            // 分解并翻译日期字符串
+            const parts = el.textContent.split(' ');
+            if (parts.length >= 3) {
+                const month = monthTranslations[parts[0]];
+                const day = parts[1].replace(',', ''); // 删除逗号
+                const year = parts[2];
+    
+                // 检查并翻译附加信息，如 "(Deleted in 14 days)"
+                const additionalInfoRegex = /\(Deleted in (\d+) days\)/;
+                const additionalInfoMatch = el.textContent.match(additionalInfoRegex);
+                let additionalInfo = '';
+                if (additionalInfoMatch) {
+                    const days = additionalInfoMatch[1];
+                    additionalInfo = `（将于${days}天内删除）`;
+                }
+    
+                if (month) {
+                    el.textContent = `${month} ${day}, ${year} ${additionalInfo}`;
+                }
+            }
+        });
+    }
+
+    function translateDates() {
+        console.log("缩写日期翻译脚本正在运行");
+    
+        // 更新月份映射表以包含缩写形式
+        const monthTranslations = {
+            'Jan': '一月',
+            'Feb': '二月',
+            'Mar': '三月',
+            'Apr': '四月',
+            'May': '五月',
+            'Jun': '六月',
+            'Jul': '七月',
+            'Aug': '八月',
+            'Sep': '九月',
+            'Oct': '十月',
+            'Nov': '十一月',
+            'Dec': '十二月'
+        };
+    
+        // 定义选择器以匹配缩写日期格式
+        const selector = 'div[class*="text-"][class*="font-bold"]'; // 适当调整以匹配您的页面元素
+    
+        // 选择并处理元素
+        const elements = document.querySelectorAll(selector);
+        console.log("找到的缩写日期元素数量:", elements.length);
+    
+        // 使用正则表达式匹配缩写日期格式
+        const dateRegex = /(Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec) (\d{1,2}), (\d{4})/;
+        
+        elements.forEach(el => {
+            const matches = el.textContent.match(dateRegex);
+            if (matches) {
+                const month = monthTranslations[matches[1]];
+                const day = matches[2];
+                const year = matches[3];
+    
+                if (month) {
+                    el.textContent = `${month} ${day}, ${year}`;
+                }
+            }
+        });
+    }
+    
+
     // 初始页面加载时应用翻译
+    translateDates();
     applyTranslation();
+    translateFullDatesInH5Elements();
 
     // 监听DOM变化，有新的节点加载时再次应用翻译
-    const observer = new MutationObserver(() => {
+    const observer = new MutationObserver((mutations, obs) => {
         applyTranslation();
+        translateFullDatesInH5Elements();
+        translateDates();
     });
 
     // 配置观察选项
