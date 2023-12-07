@@ -61,8 +61,8 @@ span {
 @media (prefers-color-scheme: dark) {
     :root {
         --bgColor: #1E1E1E;
-        --hoverBgColor: #363636;
-        --hlColor: #fff;
+        --hoverBgColor: #ffffff;
+        --hlColor: #000000;
         --text-color: #fff;
         --newColor: #1c60f6;
         --topColor: #363636;

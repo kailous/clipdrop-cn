@@ -123,6 +123,7 @@
             'Remove compression': '去除压缩',
             'Denoise': '降噪',
             'Sharpen': '锐化',
+            'Show async tasks': '显示异步任务',
             'Represented as a small tool, Clipdrop Image upscaler can improve image quality from compressed images': '作为一个小工具，Clipdrop 图片放大器可以改善压缩图像的质量',
             'Clipdrop denoises images by raising the resolution with minimal loss of sharpness and fidelity.': 'Clipdrop 通过最小化锐度和保真度损失，通过提高分辨率对图像进行降噪。',
             'Clipdrop Image upscaler makes images, especially photos and screenshots, sharper and more crisp and less pixelated. And it\'s super easy to use. Just drop your image and that\'s it!': 'Clipdrop 图片放大器使图像，尤其是照片和截图，更清晰，更鲜明，减少了像素感。而且使用非常简单，只需拖放您的图像，就完成了！',
@@ -156,11 +157,14 @@
             'Portraits': '肖像',
             'Cars': '汽车',
             'Clothes': '服装',
-            'Clipdrop design tools remove unwanted background  for product photography. With customized background, you can take your product photos to the next level.': 'Clipdrop 设计工具可移除产品摄影中不需要的背景。通过定制背景，您可以将产品照片提升到一个新水平。',
-            'Clipdrop background removal is the best algorithm to clean portraits pictures': 'Clipdrop 背景移除是清理肖像照片的最佳算法',
-            'Clipdrop online background remover performs extremely well on cars': 'Clipdrop 在线背景移除在汽车上表现非常出色',
-            'The new Clipdrop picture background remover tool is more powerful, accurate, and easier to use. The improved algorithm can help you remove background fast, and it\'s optimized for clothing.': '全新的 Clipdrop 图片背景移除工具更加强大、准确且易于使用。改进的算法可以帮助您快速移除背景，而且针对服装进行了优化。',
-            'With Clipdrop advanced computer vision algorithms, removing backgrounds of the most complex chair, bench, or any other furniture became easy!': '通过 Clipdrop 先进的计算机视觉算法，移除最复杂的椅子、长凳或其他家具的背景变得简单！',
+            'Product': '产品',
+            'Small details': '小细节',
+            'Precise': '精确',
+            'Portraits are our specialty. We flawlessly isolate the subject in your portrait photographs, ensuring the focus remains on the subject while the background is seamlessly removed.': '肖像是我们的专长。我们完美地将您肖像照片中的主体隔离开来，确保焦点仍然在主体上，同时无缝地移除背景。',
+            'Meet the perfect solution for e-commerce, creating pristine product images that are visually appealing and optimized for online sales.': '满足电子商务的完美解决方案，创建完美的产品图像，视觉吸引力强，针对在线销售进行了优化。',
+            'Artistic flair is retained with our tool, which removes backgrounds while preserving the artistic essence of your creation. Whether it\'s a drawing or a painting, perfect for artists and creatives.': '我们的工具保留了艺术气息，同时保留了您作品的艺术本质。无论是绘画还是绘画，都非常适合艺术家和创意人士。',
+            'Small Details matter, and remove background is perfect for intricate elements like grids, ensuring your content maintains its visual integrity.'   : '小细节很重要，移除背景非常适合复杂的网格等细节，确保您的内容保持视觉完整性。',
+            'Our tool excels in handling intricate details, making it the ideal choice for preserving the fine texture of hair and small elements, while minimizing artifacts.': '我们的工具擅长处理复杂的细节，是保留头发和小元素的细腻纹理的理想选择，同时最大限度地减少了伪影。',
             // 替换背景
             'Replace background': '替换背景',
             'Teleport anything, anywhere with AI': '利用人工智能将物体传送到任何场景中',
@@ -172,6 +176,9 @@
             'Creative Agency': '创意代理公司',
             'Pack Shot ': '商品特写',
             'Selfie': '自拍',
+            'A blurry desert background': '模糊的沙漠背景',
+            'A field of flower': '一片花田',
+            'In a forest': '在森林里',
             'Teleport your models anywhere, in one click. You don\'t need Photoshop to make impressive shoots anymore.': '一键将您的物体放置在任何地方。或许你可以丢掉 Photoshop 了。',
             'Create as many concepts as you want for your products or your clients.  Your only limit is your imagination.': '为您的产品或客户创建尽可能多的概念。唯一的限制就是您的想象力。',
             'You want an insane ad for your product ? Take a simple photo and teleport them in an amazing photoshoot studio, in a volcano or in a cosy living room.': '想为您的产品制作疯狂的广告吗？拍一张简单的照片，将其传送到一个令人惊叹的拍摄工作室、火山或舒适的客厅中。',
@@ -284,6 +291,22 @@
             'Usage-based cost': '基于使用量的成本',
             'API pricing': 'API 定价',
             'API Documentation': 'API 文档',
+            // 换脸
+            'Swap': '换脸',
+            'Swap people in any image': '任意图像中的人物的脸为任意人',
+            'Select an image to start': '选择一个图片开始',
+            'Paint': '绘画',
+            'Group': '组合',
+            'Special': '特殊',
+            'Vintage': '复古',
+            'Man': '男性',
+            'Woman': '女性',
+            'Show less': '显示较少',
+            'Drag a photo of someone over the head to ': '将某人的照片拖到头上即可 ',
+            'swap': '交换',
+            ' them': ' 他们',
+            'Don’t show again': '不再显示',
+            'Get started': '开始使用',
             // 我的
             'My account': '我的账户',
             'Go to the gallery': '转到画廊',
@@ -404,8 +427,10 @@
         const currentDay = new Date().getDate(); // 获取当前日期的天数
         const startingDay = 1; // 设定起始天数
         const totalDays = 31; // 设定总天数，这里假设每个月都是31天，可以根据实际情况调整
+        let monthEn = ['January', 'February', 'March', 'April', 'May', 'June','July', 'August', 'September', 'October', 'November', 'Dec'];
+
         // 数字循环
-        for (let i = 0; i <= 255; i++) {
+        for (let i = 0, m = 1; i <= 255, m <=31; i++, m++ ) {
             const monthIndex = (new Date().getMonth() + i) % 12; // 获取月份索引，使用取余来循环获取
             const yearIndex = (currentYear - startingYear + i) % totalYears; // 获取年份索引，使用取余来循环获取
             const dayIndex = (currentDay - startingDay + i) % totalDays + 1; // 获取天数索引，使用取余来循环获取，并加上起始天数
@@ -417,13 +442,16 @@
             const YearCn = yearNamesCn[yearIndex];
 
             const DayEn = dayNamesEn[dayIndex];
+            const DayCn = dayNamesEn[dayIndex];
 
             translationMap[`${i} / 10 Images`] = `${i} / 10 图像`;
             translationMap[`${i} images left`] = `剩余 ${i} 张图像`;
             translationMap[`Light ${i}`] = `灯光 ${i}`;
-            translationMap[`${formattedDateEn} (Deleted in ${i} days)`] = `${formattedDateCn} (${i} 天后删除)`;
             translationMap[`${formattedMonthEn} ${i}, ${formattedYearEn} (Deleted tomorrow)`] = `${formattedMonthCn} ${i}, ${formattedYearCn} (明天删除)`;
+            translationMap[`${MonthEn} ${m}, ${YearEn} (Deleted in ${i} days)`] = `${MonthCn} ${m}, ${YearCn} (${i}天后删除)`;
             translationMap[`${MonthEn} ${DayEn}, ${YearEn}`] = `${MonthCn} ${DayEn}, ${YearCn}`;
+            // console.log(`${MonthEn} ${DayEn}, ${YearEn} (Deleted in ${i} days)`); 
+    
         }
         
         return translationMap[text] || text;
