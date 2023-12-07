@@ -1,11 +1,1 @@
-#!/bin/bash
-
-echo "请输入图标库地址："
-read iconUrl
-
-if [ -z "$iconUrl" ]; then
-  echo "未输入地址，请重新运行脚本并输入有效地址。"
-  exit 1
-fi
-
-curl -o icons.js "$iconUrl"
+curl -o js/icons.js "https://lf1-cdn-tos.bytegoofy.com/obj/iconpark/icons_29707_15.2cc5aea646051298d2a8fa27b3c57b5b.js"
