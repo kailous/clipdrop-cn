@@ -870,7 +870,6 @@
         // 选择h5元素
         const selector = 'h5';
         const dateElements = document.querySelectorAll(selector);
-        console.log("找到的元素数量:", dateElements.length);
     
         // 循环遍历所选元素并翻译日期字符串
         dateElements.forEach(el => {
@@ -899,8 +898,6 @@
     }
 
     function translateDates() {
-        console.log("缩写日期翻译脚本正在运行");
-    
         // 更新月份映射表以包含缩写形式
         const monthTranslations = {
             'Jan': '一月',
@@ -922,7 +919,6 @@
     
         // 选择并处理元素
         const elements = document.querySelectorAll(selector);
-        console.log("找到的缩写日期元素数量:", elements.length);
     
         // 使用正则表达式匹配缩写日期格式
         const dateRegex = /(Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec) (\d{1,2}), (\d{4})/;
