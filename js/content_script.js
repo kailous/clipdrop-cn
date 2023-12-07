@@ -395,6 +395,36 @@
     // 翻译缓存
     const translationCache = new Map();
 
+    // 特殊函数用于翻译日期和天数
+    const translateDate = (text) => {
+        const datePattern = /(January|February|March|April|May|June|July|August|September|October|November|December)\s(\d{1,2}),\s(\d{4})\s\(Deleted in\s(\d+)\sdays\)/;
+        const monthTranslations = {
+            'January': '一月',
+            'February': '二月',
+            'March': '三月',
+            'April': '四月',
+            'May': '五月',
+            'June': '六月',
+            'July': '七月',
+            'August': '八月',
+            'September': '九月',
+            'October': '十月',
+            'November': '十一月',
+            'December': '十二月'
+        };
+
+        const match = text.match(datePattern);
+        if (match) {
+            const month = monthTranslations[match[1]];
+            const day = match[2];
+            const year = match[3];
+            const days = match[4];
+            return `${month} ${day}, ${year} (删除于${days}天内)`;
+        }
+        return text;
+    };
+
+    // 原始翻译逻辑
     const translateText = (text) => {
         // 翻译映射表
         const translationMap = {
@@ -791,50 +821,12 @@
             'Cancelled': '取消订阅',
         };
         const today = new Date();
-        const formattedDateEn = today.toLocaleDateString('en-US', {year: 'numeric', month: 'long', day: 'numeric'});
-        const formattedDateCn = today.toLocaleDateString('zh-CN', {year: 'numeric', month: 'long', day: 'numeric'});
-        const formattedMonthEn = today.toLocaleDateString('en-US',{month: 'long'});
-        const formattedYearEn = today.toLocaleDateString('en-US',{year: 'numeric'});
-        const formattedMonthCn = today.toLocaleDateString('zh-CN',{month: 'long'});
-        const formattedYearCn = today.toLocaleDateString('zh-CN',{year: 'numeric'});
-        const yearNamesEn = ['2023', '2024', '2025', '2026', '2027', '2028', '2029', '2030', '2031', '2032', '2033', '2034', '2035', '2036', '2037', '2038', '2039'];
-        const yearNamesCn = ['2023年', '2024年', '2025年', '2026年', '2027年', '2028年', '2029年', '2030年', '2031年', '2032年', '2033年', '2034年', '2035年', '2036年', '2037年', '2038年', '2039年'];
-        const monthNamesEn = ['January', 'February', 'March', 'April', 'May', 'June','July', 'August', 'September', 'October', 'November', 'Dec'];
-        const monthNamesCn = ['一月', '二月', '三月', '四月', '五月', '六月','七月', '八月', '九月', '十月', '十一月', '十二月'];
-        const dayNamesEn = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10','11', '12', '13', '14', '15', '16', '17', '18', '19', '20','21', '22', '23', '24', '25', '26', '27', '28', '29', '30', '31']
-
-        const currentYear = new Date().getFullYear(); // 获取当前年份
-        const startingYear = 2023; // 设定起始年份
-        const totalYears = 17; // 设定总年份数量
-
-        const currentDay = new Date().getDate(); // 获取当前日期的天数
-        const startingDay = 1; // 设定起始天数
-        const totalDays = 31; // 设定总天数，这里假设每个月都是31天，可以根据实际情况调整
-        let monthEn = ['January', 'February', 'March', 'April', 'May', 'June','July', 'August', 'September', 'October', 'November', 'Dec'];
 
         // 数字循环
-        for (let i = 0, m = 1; i <= 255, m <=31; i++, m++ ) {
-            const monthIndex = (new Date().getMonth() + i) % 12; // 获取月份索引，使用取余来循环获取
-            const yearIndex = (currentYear - startingYear + i) % totalYears; // 获取年份索引，使用取余来循环获取
-            const dayIndex = (currentDay - startingDay + i) % totalDays + 1; // 获取天数索引，使用取余来循环获取，并加上起始天数
-
-            const MonthEn = monthNamesEn[monthIndex];
-            const MonthCn = monthNamesCn[monthIndex];
-
-            const YearEn = yearNamesEn[yearIndex];
-            const YearCn = yearNamesCn[yearIndex];
-
-            const DayEn = dayNamesEn[dayIndex];
-            const DayCn = dayNamesEn[dayIndex];
-
+        for (let i = 0; i <= 255; i++) {
             translationMap[`${i} / 10 Images`] = `${i} / 10 图像`;
             translationMap[`${i} images left`] = `剩余 ${i} 张图像`;
             translationMap[`Light ${i}`] = `灯光 ${i}`;
-            translationMap[`${formattedMonthEn} ${i}, ${formattedYearEn} (Deleted tomorrow)`] = `${formattedMonthCn} ${i}, ${formattedYearCn} (明天删除)`;
-            translationMap[`${MonthEn} ${m}, ${YearEn} (Deleted in ${i} days)`] = `${MonthCn} ${m}, ${YearCn} (${i}天后删除)`;
-            translationMap[`${MonthEn} ${DayEn}, ${YearEn}`] = `${MonthCn} ${DayEn}, ${YearCn}`;
-            // console.log(`${MonthEn} ${DayEn}, ${YearEn} (Deleted in ${i} days)`); 
-    
         }
         
         return translationMap[text] || text;
