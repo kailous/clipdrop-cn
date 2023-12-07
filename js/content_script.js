@@ -389,7 +389,25 @@
         ['Manage subscription', '管理订阅'],
         ['Cancel subscription', '取消订阅'],
         ['Month', '月'],
-        ['Cancelled', '取消订阅']
+        ['Cancelled', '取消订阅'],
+        ['On a road in a forest with snow','在有雪的森林里的路上'],
+        ['In a warehouse','在仓库里'],
+        ['In a city at night','在城市的夜晚'],
+        ['In a simple white backdrop studio','在简单的白色背景工作室里'],
+        ['On concrete plate','在混凝土地板上'],
+        ['In a Parisian street at night and blurred','在巴黎的街道上，夜晚模糊'],
+        ['A Tokyo street at night with a blurry background','东京的街道，夜晚模糊的背景'],
+        ['On the beach','在海滩上'],
+        ['In the middle of a house in fire','在着火的房子中间'],
+        ['SDXL Turbo', 'SDXL 实时生成'],
+        ['Beta','测试'],
+        ['Real-Time Text-to-Image Generation', '实时文本转图像生成'],
+        ['City', '城市'],
+        ['Ocean', '海洋'],
+        ['Comfy', '舒适'],
+        ['Modern', '现代'],
+        ['Colorful', '多彩'],
+        ['Flower', '花'],
     ]);
 
     // 翻译缓存

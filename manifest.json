@@ -1,7 +1,7 @@
 {
   "manifest_version": 3,
   "name": "ClipDrop汉化插件",
-  "version": "1.6",
+  "version": "1.7",
   "description": "汉化 ClipDrop, 帮助更好的使用 ClipDrop。",
   "permissions": [
     "contextMenus",
